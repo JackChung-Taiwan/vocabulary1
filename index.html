@@ -3,225 +3,391 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>美麗台灣 Taiwan</title>
-  <meta name="description" content="介紹台灣自然景觀、美食、文化與科技特色的互動網頁。" />
+
+  <title>美麗台灣 Taiwan Island Adventure</title>
+
+  <!-- PWA 設定 -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0ea5e9" />
+  <meta name="mobile-web-app-capable" content="yes" />
+
+  <!-- iPhone / iPad 加入主畫面設定 -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="美麗台灣" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+
   <style>
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
-      background: #f6fbff;
-      color: #17324d;
-      line-height: 1.7;
+      background: linear-gradient(180deg, #e0f7ff 0%, #ffffff 45%, #f0fdf4 100%);
+      color: #1f2937;
+      line-height: 1.8;
     }
+
     header {
-      min-height: 88vh;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 48px 20px;
-      color: white;
+      padding: 40px 20px;
       background:
-        radial-gradient(circle at 20% 20%, rgba(255,255,255,.28), transparent 28%),
-        linear-gradient(135deg, #0f766e, #16a34a 42%, #2563eb);
-      overflow: hidden;
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.35), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(34, 197, 94, 0.3), transparent 35%),
+        linear-gradient(135deg, #0ea5e9, #22c55e);
+      color: white;
       position: relative;
+      overflow: hidden;
     }
-    header::before, header::after {
-      content: "";
+
+    header::before {
+      content: "TAIWAN";
       position: absolute;
-      border-radius: 999px;
-      background: rgba(255,255,255,.16);
-    }
-    header::before { width: 280px; height: 280px; left: -80px; bottom: -90px; }
-    header::after { width: 380px; height: 380px; right: -130px; top: -120px; }
-    .hero { position: relative; z-index: 1; max-width: 960px; }
-    .tag {
-      display: inline-block;
-      padding: 8px 18px;
-      border: 1px solid rgba(255,255,255,.55);
-      border-radius: 999px;
-      background: rgba(255,255,255,.16);
-      backdrop-filter: blur(10px);
-      font-weight: 700;
-      margin-bottom: 18px;
-    }
-    h1 {
-      font-size: clamp(44px, 8vw, 92px);
-      margin: 0 0 12px;
-      letter-spacing: .08em;
-      text-shadow: 0 8px 24px rgba(0,0,0,.25);
-    }
-    header p {
-      font-size: clamp(19px, 3vw, 30px);
-      margin: 0 auto 30px;
-      max-width: 760px;
-    }
-    .btn {
-      display: inline-block;
-      padding: 14px 30px;
-      border-radius: 999px;
-      background: #facc15;
-      color: #17324d;
-      text-decoration: none;
+      font-size: clamp(70px, 18vw, 240px);
       font-weight: 900;
-      box-shadow: 0 12px 28px rgba(0,0,0,.18);
-      transition: transform .2s ease, box-shadow .2s ease;
+      opacity: 0.08;
+      letter-spacing: 10px;
+      transform: rotate(-8deg);
     }
-    .btn:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(0,0,0,.22); }
+
+    .hero {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 8vw, 96px);
+      margin: 0 0 20px;
+      letter-spacing: 4px;
+      text-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    .hero p {
+      font-size: clamp(20px, 3vw, 32px);
+      margin-bottom: 36px;
+      font-weight: 500;
+    }
+
+    .hero a {
+      display: inline-block;
+      padding: 16px 34px;
+      background: white;
+      color: #0284c7;
+      border-radius: 999px;
+      font-size: 22px;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .hero a:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 32px rgba(0, 0, 0, 0.22);
+    }
+
     nav {
       position: sticky;
       top: 0;
       z-index: 10;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(14, 165, 233, 0.18);
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 10px;
-      padding: 14px 16px;
-      background: rgba(255,255,255,.92);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 2px 16px rgba(0,0,0,.08);
+      gap: 12px;
+      padding: 14px 12px;
     }
+
     nav a {
-      color: #0f766e;
+      color: #0369a1;
       text-decoration: none;
-      font-weight: 900;
-      padding: 8px 13px;
+      font-weight: 800;
+      padding: 8px 16px;
       border-radius: 999px;
+      background: #e0f2fe;
+      transition: 0.2s;
     }
-    nav a:hover { background: #dcfce7; }
+
+    nav a:hover {
+      background: #0ea5e9;
+      color: white;
+    }
+
+    main {
+      max-width: 1180px;
+      margin: auto;
+      padding: 48px 20px;
+    }
+
     section {
-      width: min(1100px, calc(100% - 36px));
-      margin: 0 auto;
-      padding: 64px 0;
-    }
-    h2 {
-      font-size: clamp(30px, 4vw, 48px);
-      color: #0f766e;
-      margin: 0 0 18px;
-    }
-    .lead {
-      font-size: 20px;
-      background: white;
-      border-left: 8px solid #22c55e;
-      padding: 24px;
-      border-radius: 18px;
-      box-shadow: 0 10px 30px rgba(15, 118, 110, .08);
-    }
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 20px;
-      margin-top: 24px;
-    }
-    .card {
-      background: white;
-      padding: 26px;
-      border-radius: 24px;
-      min-height: 190px;
-      box-shadow: 0 12px 32px rgba(37, 99, 235, .09);
-      border: 1px solid rgba(37, 99, 235, .08);
-      transition: transform .2s ease;
-    }
-    .card:hover { transform: translateY(-6px); }
-    .icon { font-size: 42px; }
-    h3 { margin: 10px 0 8px; color: #2563eb; font-size: 24px; }
-    .banner {
-      background: linear-gradient(135deg, #ecfeff, #f0fdf4);
+      margin-bottom: 64px;
+      background: rgba(255, 255, 255, 0.86);
       border-radius: 28px;
-      padding: 32px;
-      border: 1px solid rgba(15, 118, 110, .14);
+      padding: 36px;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      border: 1px solid rgba(14, 165, 233, 0.12);
+    }
+
+    h2 {
+      font-size: clamp(30px, 4vw, 46px);
+      margin-top: 0;
+      color: #0369a1;
+      border-left: 10px solid #22c55e;
+      padding-left: 18px;
+    }
+
+    .intro-text {
+      font-size: 22px;
+    }
+
+    .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 22px;
-      align-items: center;
+      gap: 24px;
+      margin-top: 28px;
     }
-    .fact {
+
+    .card {
       background: white;
-      border-radius: 20px;
-      padding: 18px;
-      box-shadow: 0 8px 22px rgba(0,0,0,.06);
+      border-radius: 24px;
+      padding: 26px;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+      border: 1px solid #e5e7eb;
+      transition: transform 0.2s, box-shadow 0.2s;
+      min-height: 190px;
     }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 34px rgba(15, 23, 42, 0.14);
+    }
+
+    .emoji {
+      font-size: 44px;
+      margin-bottom: 12px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 26px;
+      color: #0f766e;
+    }
+
+    .card p {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .culture-box {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .culture-item {
+      background: linear-gradient(135deg, #fef3c7, #dcfce7);
+      border-radius: 24px;
+      padding: 28px;
+      border: 1px solid rgba(234, 179, 8, 0.25);
+    }
+
+    .culture-item strong {
+      display: block;
+      font-size: 26px;
+      color: #92400e;
+      margin-bottom: 8px;
+    }
+
     footer {
+      text-align: center;
+      padding: 32px 20px;
       background: #0f172a;
       color: white;
-      text-align: center;
-      padding: 36px 20px;
+      font-size: 16px;
     }
-    @media (max-width: 640px) {
-      header { min-height: 74vh; }
-      section { padding: 44px 0; }
+
+    .install-note {
+      margin-top: 24px;
+      background: #f0f9ff;
+      color: #0369a1;
+      border: 2px dashed #38bdf8;
+      padding: 18px;
+      border-radius: 20px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      section {
+        padding: 26px 20px;
+      }
+
+      .hero h1 {
+        letter-spacing: 1px;
+      }
+
+      nav a {
+        font-size: 15px;
+        padding: 7px 12px;
+      }
+
+      .intro-text,
+      .card p {
+        font-size: 17px;
+      }
     }
   </style>
 </head>
+
 <body>
   <header>
     <div class="hero">
-      <div class="tag">Taiwan Island Adventure</div>
       <h1>美麗台灣</h1>
       <p>從高山到海洋，從夜市到科技，台灣是一座會發光的寶島。</p>
-      <a class="btn" href="#about">開始探索</a>
+      <a href="#about">開始探索</a>
     </div>
   </header>
 
   <nav>
     <a href="#about">台灣介紹</a>
-    <a href="#travel">景點</a>
+    <a href="#places">景點</a>
     <a href="#food">美食</a>
     <a href="#culture">文化</a>
     <a href="#tech">科技</a>
   </nav>
 
-  <section id="about">
-    <h2>關於台灣</h2>
-    <p class="lead">
-      台灣位於亞洲東部，擁有壯麗山脈、清澈海岸、多元文化與熱情人情味。這裡有現代城市，也有傳統廟宇；有科技產業，也有夜市小吃。小小島嶼，裝著一座世界級的故事盒。
-    </p>
-  </section>
+  <main>
+    <section id="about">
+      <h2>關於台灣</h2>
+      <p class="intro-text">
+        台灣位於亞洲東部，擁有壯麗山脈、清澈海岸、多元文化與熱情人情味。
+        這裡有現代城市，也有傳統廟宇；有科技產業，也有夜市小吃。
+        小小島嶼，裝著一座世界級的故事盒。
+      </p>
 
-  <section id="travel">
-    <h2>熱門景點</h2>
-    <div class="cards">
-      <div class="card"><div class="icon">🏙️</div><h3>台北 101</h3><p>台灣代表性地標，可俯瞰台北城市風景。</p></div>
-      <div class="card"><div class="icon">🌄</div><h3>阿里山</h3><p>以日出、雲海、森林鐵道與神木聞名。</p></div>
-      <div class="card"><div class="icon">🌊</div><h3>太魯閣</h3><p>壯麗峽谷與大理石岩壁，是自然教室級景點。</p></div>
-      <div class="card"><div class="icon">🚲</div><h3>日月潭</h3><p>湖光山色交織，是南投最經典的旅遊勝地。</p></div>
-    </div>
-  </section>
-
-  <section id="food">
-    <h2>台灣美食</h2>
-    <div class="cards">
-      <div class="card"><div class="icon">🧋</div><h3>珍珠奶茶</h3><p>台灣代表飲品，Q 彈珍珠加上香濃奶茶。</p></div>
-      <div class="card"><div class="icon">🥟</div><h3>小籠包</h3><p>湯汁飽滿，一口咬下像打開迷你美食寶箱。</p></div>
-      <div class="card"><div class="icon">🍚</div><h3>滷肉飯</h3><p>香氣濃郁，是台灣庶民美食代表。</p></div>
-      <div class="card"><div class="icon">🍗</div><h3>夜市小吃</h3><p>鹽酥雞、蚵仔煎、地瓜球與雞排，熱鬧又美味。</p></div>
-    </div>
-  </section>
-
-  <section id="culture">
-    <h2>文化特色</h2>
-    <div class="banner">
-      <div>
-        <p>台灣融合閩南、客家、原住民族與多元移民文化。節慶活動包含元宵燈會、端午節、媽祖遶境與豐年祭，展現豐富又有生命力的文化樣貌。</p>
+      <div class="install-note">
+        這個網站已加入 PWA 設定，可以透過手機瀏覽器「加入主畫面」變成 App。
       </div>
-      <div class="fact">🏮 <strong>節慶</strong><br>燈會、廟會、民俗慶典熱鬧登場。</div>
-      <div class="fact">🎨 <strong>藝術</strong><br>傳統工藝與現代設計並行發展。</div>
-    </div>
-  </section>
+    </section>
 
-  <section id="tech">
-    <h2>科技與創新</h2>
-    <p class="lead">
-      台灣也是全球科技產業的重要基地，在半導體、資通訊、智慧製造與創新教育等領域持續發展。傳統與科技在這裡交會，讓台灣像一座正在升級的未來島。
-    </p>
-  </section>
+    <section id="places">
+      <h2>熱門景點</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="emoji">🏙️</div>
+          <h3>台北 101</h3>
+          <p>台灣代表性地標，可俯瞰台北城市風景。</p>
+        </div>
+
+        <div class="card">
+          <div class="emoji">🌄</div>
+          <h3>阿里山</h3>
+          <p>以日出、雲海、森林鐵道與神木聞名。</p>
+        </div>
+
+        <div class="card">
+          <div class="emoji">⛰️</div>
+          <h3>太魯閣</h3>
+          <p>壯麗峽谷與大理石岩壁，是自然教室級景點。</p>
+        </div>
+
+        <div class="card">
+          <div class="emoji">🚤</div>
+          <h3>日月潭</h3>
+          <p>湖光山色交織，是南投最經典的旅遊勝地。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="food">
+      <h2>台灣美食</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="emoji">🧋</div>
+          <h3>珍珠奶茶</h3>
+          <p>台灣代表飲品，Q 彈珍珠加上香濃奶茶。</p>
+        </div>
+
+        <div class="card">
+          <div class="emoji">🥟</div>
+          <h3>小籠包</h3>
+          <p>湯汁飽滿，一口咬下像打開迷你美食寶箱。</p>
+        </div>
+
+        <div class="card">
+          <div class="emoji">🍚</div>
+          <h3>滷肉飯</h3>
+          <p>香氣濃郁，是台灣庶民美食代表。</p>
+        </div>
+
+        <div class="card">
+          <div class="emoji">🍗</div>
+          <h3>夜市小吃</h3>
+          <p>鹽酥雞、蚵仔煎、地瓜球與雞排，熱鬧又美味。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="culture">
+      <h2>文化特色</h2>
+      <p class="intro-text">
+        台灣融合閩南、客家、原住民族與多元移民文化。
+        節慶活動包含元宵燈會、端午節、媽祖遶境與豐年祭，
+        展現豐富又有生命力的文化樣貌。
+      </p>
+
+      <div class="culture-box">
+        <div class="culture-item">
+          <strong>節慶</strong>
+          燈會、廟會、民俗慶典熱鬧登場。
+        </div>
+
+        <div class="culture-item">
+          <strong>藝術</strong>
+          傳統工藝與現代設計並行發展。
+        </div>
+      </div>
+    </section>
+
+    <section id="tech">
+      <h2>科技與創新</h2>
+      <p class="intro-text">
+        台灣也是全球科技產業的重要基地，在半導體、資通訊、智慧製造與創新教育等領域持續發展。
+        傳統與科技在這裡交會，讓台灣像一座正在升級的未來島。
+      </p>
+    </section>
+  </main>
 
   <footer>
     <p>© 2026 美麗台灣 Taiwan Website</p>
     <p>Created for GitHub Pages</p>
   </footer>
+
+  <!-- PWA Service Worker 註冊 -->
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker
+          .register("service-worker.js")
+          .then(function (registration) {
+            console.log("PWA Service Worker 註冊成功：", registration.scope);
+          })
+          .catch(function (error) {
+            console.log("PWA Service Worker 註冊失敗：", error);
+          });
+      });
+    }
+  </script>
 </body>
 </html>
