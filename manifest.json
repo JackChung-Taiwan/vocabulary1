@@ -1,0 +1,28 @@
+{
+  "name": "美麗台灣 Taiwan Island Adventure",
+  "short_name": "美麗台灣",
+  "description": "探索台灣景點、美食、文化與科技的互動式網站 App。",
+  "id": "/vocabulary1/",
+  "start_url": "/vocabulary1/",
+  "scope": "/vocabulary1/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#0ea5e9",
+  "lang": "zh-TW",
+  "categories": ["education", "travel", "kids"],
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
